@@ -2,7 +2,7 @@ package com.david.tictactoe.model;
 
 public class Tablero {
     // Cuadrícula de 3X3
-    private Casilla[][] casillas = new Casilla[3][3];
+    private final Casilla[][] casillas = new Casilla[3][3];
 
     /**
      * Creamos un tablero vacío
@@ -34,7 +34,6 @@ public class Tablero {
     }
 
     public Casilla getFicha(int fila, int columna) {
-        Casilla contenido = casillas[fila][columna];
-        return contenido;
+        return casillas[fila][columna];
     }
 }
