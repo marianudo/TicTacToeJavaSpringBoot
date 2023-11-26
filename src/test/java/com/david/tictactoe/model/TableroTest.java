@@ -52,5 +52,56 @@ public class TableroTest {
         tableroInicial.colocarFicha(JUGADOR1, filaJ1, colJ1);
     }
 
+    // Tests relacionados con el estado de la partida
+    @Test public void testEstadoPartidaConTableroVacio() {
+        assertEquals(EstadoPartida.EN_CURSO, tableroInicial.estadoPartida());
+    }
+
+    @Test public void testEstadoPartidaConUnaSolaFicha() throws MovimientoNoValidoException {
+        tableroInicial.colocarFicha(JUGADOR1, 0, 0);
+        assertEquals(EstadoPartida.EN_CURSO, tableroInicial.estadoPartida());
+    }
+
+    @Test public void testEstadoPartidaConUnaFichaDeCadaJugador() throws MovimientoNoValidoException {
+        tableroInicial.colocarFicha(JUGADOR1, 0, 0);
+        tableroInicial.colocarFicha(JUGADOR2, 1, 0);
+        assertEquals(EstadoPartida.EN_CURSO, tableroInicial.estadoPartida());
+    }
+
+    @Test public void testEstadoPartidaEnCursoYaAvanzada() throws MovimientoNoValidoException {
+        tableroInicial.colocarFicha(JUGADOR1, 0, 0);
+        tableroInicial.colocarFicha(JUGADOR1, 0, 1);
+        tableroInicial.colocarFicha(JUGADOR2, 0, 2);
+        tableroInicial.colocarFicha(JUGADOR2, 1, 0);
+        tableroInicial.colocarFicha(JUGADOR2, 1, 1);
+        tableroInicial.colocarFicha(JUGADOR1, 2, 0);
+        assertEquals(EstadoPartida.EN_CURSO, tableroInicial.estadoPartida());
+    }
+
+    @Test public void testEstadoPartidaEnTablas() throws MovimientoNoValidoException {
+        tableroInicial.colocarFicha(JUGADOR1, 0, 0);
+        tableroInicial.colocarFicha(JUGADOR1, 0, 1);
+        tableroInicial.colocarFicha(JUGADOR2, 0, 2);
+        tableroInicial.colocarFicha(JUGADOR2, 1, 0);
+        tableroInicial.colocarFicha(JUGADOR2, 1, 1);
+        tableroInicial.colocarFicha(JUGADOR1, 2, 0);
+        tableroInicial.colocarFicha(JUGADOR1, 1, 2);
+        assertEquals(EstadoPartida.TABLAS, tableroInicial.estadoPartida());
+    }
+    
+    @Test public void testGanaJugador1() throws MovimientoNoValidoException {
+        tableroInicial.colocarFicha(JUGADOR1, 0, 0);
+        tableroInicial.colocarFicha(JUGADOR2, 0, 1);
+        tableroInicial.colocarFicha(JUGADOR1, 1, 0);
+        tableroInicial.colocarFicha(JUGADOR1, 1, 1);
+        tableroInicial.colocarFicha(JUGADOR2, 2, 0);
+        tableroInicial.colocarFicha(JUGADOR2, 2, 2);
+        tableroInicial.colocarFicha(JUGADOR1, 1, 2);
+        assertEquals(EstadoPartida.GANA_JUGADOR1, tableroInicial.estadoPartida());
+    }
+
+    @Test public void testGanaJugador2() throws MovimientoNoValidoException {
+        //TODO Tarea para David, implementar este test antes de crear la lógica del método Tablero.estadoPartida()
+        fail("Pendiente de implementar");
     }
 }

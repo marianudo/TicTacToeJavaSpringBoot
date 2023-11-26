@@ -36,4 +36,9 @@ public class Tablero {
     public Casilla getFicha(int fila, int columna) {
         return casillas[fila][columna];
     }
+
+    public EstadoPartida estadoPartida() {
+        // TODO Pendiente de implementar (Tarea para David)
+        return null;
+    }
 }
