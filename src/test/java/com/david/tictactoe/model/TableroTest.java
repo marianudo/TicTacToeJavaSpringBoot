@@ -17,7 +17,7 @@ public class TableroTest {
         int columna = 0;
 
         tableroInicial.colocarFicha(Casilla.JUGADOR1, fila, columna);
-        assertNotNull(tableroInicial.getFicha(fila, columna));
+        assertNotEquals(Casilla.VACIA, tableroInicial.getFicha(fila, columna));
     }
 
     // Errores
@@ -36,7 +36,7 @@ public class TableroTest {
     }
 
     @Test(expected = MovimientoNoValidoException.class)
-    public void posicionarFichaEnCasillaOcupadaPorJ1() throws MovimientoNoValidoException {
+    public void posicionarFichaEnCasillaOcupadaPorMi() throws MovimientoNoValidoException {
         int filaJ1 = 0;
         int colJ1 = 0;
         tableroInicial.colocarFicha(Casilla.JUGADOR1, filaJ1, colJ1);
@@ -44,7 +44,7 @@ public class TableroTest {
     }
 
     @Test(expected = MovimientoNoValidoException.class)
-    public void posicionarFichaEnCasillaOcupadaPorJ2() throws MovimientoNoValidoException {
+    public void posicionarFichaEnCasillaOcupadaPorOtro() throws MovimientoNoValidoException {
         int filaJ1 = 0;
         int colJ1 = 0;
         tableroInicial.colocarFicha(Casilla.JUGADOR2, filaJ1, colJ1);
